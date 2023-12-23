@@ -12,6 +12,7 @@ function PasswordGenerator() {
     const [symbols, setSymbols] = useState(false)
     const [lowercase, setLowercase] = useState(true)
     const [uppercase, setUppercase] = useState(false)
+    const [customLength, setCustomLength] = useState(false)
 
     function clipboard() {
         setCopy("Copiado")
@@ -26,11 +27,19 @@ function PasswordGenerator() {
     return (
         <div className={styles.wrapper}>
             <h1 className={styles.title}>Gerador de Senhas</h1>
-            <div className={styles.lengthContainer}>
-                <label htmlFor="range">Tamanho {length}</label>
-                <input type="range" id="range" value={length} min={4} max={25} onChange={(ev) => setLength(ev.target.value)} />
-            </div>
+
+            {customLength ? (
+                <div className={styles.lengthContainer}>
+                    <label htmlFor="range">Tamanho {length}</label>
+                    <input type="range" id="range" value={length} min={4} max={99} onChange={(ev) => setLength(ev.target.value)} />
+                </div>
+            ) : null}
+            
             <div className={styles.switchContainer}>
+                <div className={styles.switch}>
+                    <Switch onChange={() => setCustomLength((state) => state ? false : true)} checked={customLength} id="customLength" />
+                    <label htmlFor="customLength">Personalizar</label>
+                </div>
                 <div className={styles.switch}>
                     <Switch onChange={() => setNumbers((state) => state ? false : true)} checked={numbers} id="numbers" />
                     <label htmlFor="numbers">Números</label>
@@ -53,9 +62,10 @@ function PasswordGenerator() {
                 <Button event={handleButtonGenerate} title={"Gerar"} />
                 <Button event={clipboard} title={copy} />
             </div>
+
             <div className={styles.passwordContainer}>
                 <label>Senha:</label>
-                <input className={styles.password} value={password} type="text" disabled={true} />
+                <p className={styles.password}>{password}</p>
             </div>
         </div>
     )

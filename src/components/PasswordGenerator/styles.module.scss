@@ -5,13 +5,12 @@
     align-items: center;
     gap: 2rem;
     padding: 2rem;
-    height: 100vh;
+    min-height: 100vh;
     
     .title {
         font-size: 3rem;
         color: #fff;
         text-align: center;
-        text-wrap: nowrap;
     }
 
     .lengthContainer {
@@ -49,23 +48,25 @@
         gap: 2rem;
     }
 
-    .passwordContainer {     
+    .passwordContainer { 
         label {
             font-size: 1.2rem;
             display: block;
             color: #fff;
+            margin-left: .5rem;
         }
-    }
 
-    .password {
-        text-align: center;
-        color: #fff; 
-        width: 100%;
-        font-size: 1rem;
-        border-radius: 10px;
-        background-color: #707070;
-        padding: .5rem;
-    } 
+        .password {
+            text-align: center;
+            color: #fff;
+            width: 15rem;
+            font-size: 1rem;
+            border-radius: 10px;
+            background-color: #707070;
+            padding: .5rem;
+            overflow-wrap: break-word;
+        } 
+    }
 }
 
 @media (max-width: 510px) {
